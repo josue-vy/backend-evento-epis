@@ -2,12 +2,15 @@ const { poolPromise } = require('../database/database');
 
 async function guardarCodigoQR(req, res) {
     try {
-        const { codigoQR, comentario } = req.body;  // Cambiamos 'rating' por 'codigoQR'
+        const { codigoQR } = req.body;  // Solo obtenemos 'codigoQR' (sin 'comentario')
         const pool = await poolPromise;
+        const fecha = new Date();  // Obtenemos la fecha y hora actuales
+        
+        // Insertamos solo el codigoQR y la fecha
         await pool.request()
             .input('codigoQR', codigoQR)
-            .input('comentario', comentario)
-            .query('INSERT INTO codigos_qr (codigoQR, comentario) VALUES (@codigoQR, @comentario)');
+            .input('fecha', fecha)
+            .query('INSERT INTO codigos_qr (codigoQR, fecha) VALUES (@codigoQR, @fecha)');
         
         res.status(201).json({ message: 'Código QR guardado correctamente' });
     } catch (error) {
