@@ -14,18 +14,18 @@ const port = 3000;
 
 // Configuración de sesiones
 app.use(
-    session({
-      secret: 'mi_clave_secreta',
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-        secure: false, // En desarrollo, desactivar secure
-        httpOnly: true, // Asegurarse de que las cookies sean accesibles solo por el servidor
-        sameSite: 'Lax', // Asegura que las cookies se compartan correctamente entre peticiones en desarrollo
-        maxAge: 1000 * 60 * 60 * 24, // Duración de la cookie (1 día)
-      },
-    })
-  );
+  session({
+    secret: 'mi_clave_secreta', // Mantén esto simple si es un despliegue rápido
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: true, // Cookies seguras en producción
+      httpOnly: true,
+      sameSite: 'Lax',
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
   
 
 // Configuración de CORS
