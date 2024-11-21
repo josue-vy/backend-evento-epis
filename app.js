@@ -12,16 +12,17 @@ const http = require('http');
 const app = express();
 const port = 3000;
 
-// Configuración de sesiones
+app.set('trust proxy', 1); // Esto es necesario si Render está detrás de un proxy que maneja HTTPS
+
 app.use(
   session({
-    secret: 'mi_clave_secreta', // Mantén esto simple si es un despliegue rápido
+    secret: 'mi_clave_secreta',
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: true, // Cookies seguras en producción
+      secure: process.env.NODE_ENV === 'production' || req.protocol === 'https', // Asegura que las cookies se envíen sobre HTTPS
       httpOnly: true,
-      sameSite: 'Lax',
+      sameSite: 'None',
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
