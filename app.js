@@ -29,7 +29,7 @@ app.use(
 );
 
 app.use(cors({
-  origin: 'https://evento-epis-jxiush8lm-epis.vercel.app', // URL de tu frontend
+  origin: 'https://evento-epis-grcz1kmev-epis.vercel.app ', // URL de tu frontend
   credentials: true
 }));
 
