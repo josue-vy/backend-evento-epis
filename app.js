@@ -27,8 +27,10 @@ app.use(
   })
 );
 
-// Configuración de CORS
-app.use(cors({ origin: '*', credentials: true })); // Configuración directa de CORS
+app.use(cors({
+  origin: 'https://evento-epis-omx3whl1f-epis.vercel.app', // URL de tu frontend
+  credentials: true
+}));
 
 // Middleware de body-parser
 app.use(bodyParser.json());
