@@ -29,10 +29,8 @@ app.use(
   
 
 // Configuración de CORS
-const corsOptions = {
-  origin: 'http://localhost:5173', // Verifica que este sea el puerto de tu frontend
-  credentials: true, // Permitir el envío de cookies
-};
+app.use(cors({ origin: '*', credentials: true }));
+
 app.use(cors(corsOptions)); // Aplica CORS a todas las rutas
 
 // Middleware de body-parser
