@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const qrRoutes = require('./routes/asistenciaRoute');
 const loginRoutes = require('./routes/loginRoute');
-const qrRoute = require('./routes/qrRoute');  // Ya estás importando esta ruta
+const qrRoute = require('./routes/qrRoute'); // Ya estás importando esta ruta
 
 const http = require('http');
 const app = express();
@@ -26,20 +26,17 @@ app.use(
     },
   })
 );
-  
 
 // Configuración de CORS
-app.use(cors({ origin: '*', credentials: true }));
-
-app.use(cors(corsOptions)); // Aplica CORS a todas las rutas
+app.use(cors({ origin: '*', credentials: true })); // Configuración directa de CORS
 
 // Middleware de body-parser
 app.use(bodyParser.json());
 
 // Rutas
-app.use('/backend', loginRoutes);  // Asegúrate de que las rutas de login estén separadas
-app.use('/backend', qrRoutes);     // Rutas para manejo de asistencia
-app.use('/backend', qrRoute);      // Rutas para manejar validación del QR
+app.use('/backend', loginRoutes); // Asegúrate de que las rutas de login estén separadas
+app.use('/backend', qrRoutes);    // Rutas para manejo de asistencia
+app.use('/backend', qrRoute);    // Rutas para manejar validación del QR
 
 // Inicia el servidor HTTP
 http.createServer(app).listen(port, () => {
